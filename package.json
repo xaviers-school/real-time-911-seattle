@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sabbyt/real-time-911-seattle/issues"
   },
-  "homepage": "https://github.com/sabbyt/real-time-911-seattle#readme"
+  "homepage": "https://github.com/sabbyt/real-time-911-seattle#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
