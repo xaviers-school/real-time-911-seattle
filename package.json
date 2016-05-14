@@ -1,0 +1,23 @@
+{
+  "name": "real-time-911-seattle",
+  "version": "1.0.0",
+  "description": "Visualization of real time 911 data from Seattle Fire Department",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabbyt/real-time-911-seattle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabbyt/real-time-911-seattle/issues"
+  },
+  "homepage": "https://github.com/sabbyt/real-time-911-seattle#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
