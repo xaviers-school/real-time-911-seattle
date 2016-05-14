@@ -63,13 +63,7 @@ body {
  */
 
 .main {
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
+  padding: 0px;
 }
 .main .page-header {
   margin-top: 0;
@@ -83,6 +77,6 @@ html, body {
   height: 100%;
 }
 
-#map {
+.full-height {
   height: 100%;
 }
