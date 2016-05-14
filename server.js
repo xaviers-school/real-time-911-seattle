@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
 
-var PORT = process.env.PORT || 3000;
-var server = module.exports = exports = app.listen(PORT, () => console.log('Server started on port: ' + PORT));
+const PORT = process.env.PORT || 3000;
+app.use('/', express.static(__dirname + '/app'));
+
+module.exports = exports = app.listen(PORT, () => {
+   console.log('Server running on port: ' + PORT);
+ });
