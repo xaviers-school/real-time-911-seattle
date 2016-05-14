@@ -1,23 +1,23 @@
-// var markerData = [
-//   {lat: 47.604, lng: -122.33},
-//   {lat: 47.671, lng: -122.28},
-//   {lat: 47.610, lng: -122.33}
-// ];
-
 var map;
+var infoWindow;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 47.604, lng: -122.33},
     zoom: 8
   });
+
+  infoWindow = new google.maps.InfoWindow();
+  google.maps.event.addListener(map, 'click', function() {
+    infoWindow.close();
+  });
 }
 
-function displayMarkers(markerData) {
+function displayMarkers(markersData) {
   var bounds = new google.maps.LatLngBounds();
 
-  for (var i = 0; i < markerData.length; i++) {
-    var latlng = new google.maps.LatLng(markerData[i].lat, markerData[i].lng);
+  for (var i = 0; i < markersData.length; i++) {
+    var latlng = new google.maps.LatLng(markersData[i].lat, markersData[i].lng);
     var dateTime = markersData[i].dateTime;
     var address = markersData[i].address;
     var type = markersData[i].type;
@@ -29,9 +29,21 @@ function displayMarkers(markerData) {
   map.fitBounds(bounds);
 }
 
-function createMarker(latlng) {
+function createMarker(latlng, dateTime, address, type, incidentNum) {
   var marker = new google.maps.Marker({
     map: map,
-    position: latlng
+    position: latlng,
+    title: type
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    var content = '<div>Type: ' + type + '</div>' +
+      '<div>Date: ' + dateTime + '<br />' +
+      'Address: ' + address + '<br />' +
+      'Incident Number: ' + incidentNum + '</div>';
+
+    infoWindow.setContent(content);
+
+    infoWindow.open(map, marker);
   });
 }
