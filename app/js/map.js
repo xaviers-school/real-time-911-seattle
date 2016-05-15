@@ -22,18 +22,26 @@ function displayMarkers(markersData) {
     var address = markersData[i].address;
     var type = markersData[i].type;
     var incidentNum = markersData[i].incidentNum;
-    createMarker(latlng, dateTime, address, type, incidentNum);
+
+    var markerColor = '../img/red-dot.png';
+    if (markersData[i].type.match(/Medic/gi)) markerColor = '../img/first-aid.png';
+    if (markersData[i].type.match(/MVI/gi)) markerColor = '../img/blue-dot.png';
+    if (markersData[i].type.match(/Fire/gi)) markerColor = '../img/first-aid.png';
+
+    createMarker(latlng, dateTime, address, type, incidentNum, markerColor);
     bounds.extend(latlng);
   }
 
   map.fitBounds(bounds);
 }
 
-function createMarker(latlng, dateTime, address, type, incidentNum) {
+function createMarker(latlng, dateTime, address, type, incidentNum, markerColor) {
   var marker = new google.maps.Marker({
     map: map,
     position: latlng,
-    title: type
+    animation: google.maps.Animation.DROP,
+    title: type,
+    icon: markerColor
   });
 
   google.maps.event.addListener(marker, 'click', function() {
