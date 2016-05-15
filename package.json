@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/sabbyt/real-time-911-seattle#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "cheerio": "^0.20.0",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
   }
 }

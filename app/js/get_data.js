@@ -20,7 +20,7 @@ function getData(userOpt) {
 
   return $.ajax(endpoint, {
     headers: {
-      'X-App-Token': 'APIKEY'
+      'X-App-Token': 'API_KEY'
     }
   }).then(function(data) {
     var markerData = data.map(function(el) {

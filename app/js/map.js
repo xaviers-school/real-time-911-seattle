@@ -45,8 +45,8 @@ function createMarker(latlng, dateTime, address, type, incidentNum, markerColor)
   });
 
   google.maps.event.addListener(marker, 'click', function() {
-    var content = '<div>Type: ' + type + '</div>' +
-      '<div>Date: ' + dateTime + '<br />' +
+    var content = '<div><strong>Type: ' + type + '</strong><br />' +
+      'Date: ' + dateTime + '<br />' +
       'Address: ' + address + '<br />' +
       'Incident Number: ' + incidentNum + '</div>';
 
