@@ -8,7 +8,8 @@ var dataSchema = new mongoose.Schema({
   location: String,
   type: String,
   status: String,
-  latlng: String
+  lat: String,
+  lng: String
 });
 
 module.exports = exports = mongoose.model('Data', dataSchema);

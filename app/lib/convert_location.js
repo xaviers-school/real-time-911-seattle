@@ -9,7 +9,10 @@ module.exports = exports = function(address) {
       if(error) return reject(error);
       if(!error && response.statusCode == 200) {
         var locations = JSON.parse(body);
-        return resolve(locations.results[0].geometry.location.lat + ', ' + locations.results[0].geometry.location.lng);
+        return resolve({
+          lat: locations.results[0].geometry.location.lat,
+          lng: locations.results[0].geometry.location.lng
+        });
       }
     });
   });

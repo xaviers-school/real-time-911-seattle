@@ -50,9 +50,10 @@ scraperRouter.get('/', function(req, res) {
         if (!data) {
           console.log('New data found');
           convert(incident.location)
-            .then(latlng => {
-              incident.latlng = latlng;
-              console.log('incident latlng ' + incident.latlng);
+            .then(data => {
+              incident.lat = data.lat;
+              incident.lng = data.lng;
+              console.log('incident latlng ' + incident.lat + ', ' + incident.lng);
               saveToDb(incident);
             }, err => {
               console.log(err);

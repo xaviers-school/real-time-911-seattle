@@ -32,22 +32,25 @@ function getData(userOpt) {
   }
   // console.log('query: ', queryStr);
 
-  var endpoint = 'http://localhost:3000/scrape';
+  var endpoint = 'http://localhost:3000/data/getData';
   // if (queryStr.length) endpoint += queryStr;
+  var markerData;
 
   return $.ajax(endpoint).then(function(data) {
-    // var markerData = data.map(function(el) {
-    //   return {
-    //     lat: el['report_location']['coordinates'][1],
-    //     lng: el['report_location']['coordinates'][0],
-    //     dateTime: el['datetime'],
-    //     address: el['address'],
-    //     type: el['type'],
-    //     incidentNum: el['incident_number']
-    //   };
-    // });
-    var markerData = data;
-    console.log(markerData);
+    var markerData = data.map(function(el) {
+      return {
+        lat: el['lat'],
+        lng: el['lng'],
+        dateTime: el['datetime'],
+        address: el['location'],
+        type: el['type'],
+        incidentNum: el['incidentNumber'],
+        status: el['status'],
+        units: el['units'],
+        level: el['level']
+      };
+    });
+
     console.log(`Rendering ${markerData.length} items on map`);
     displayMarkers(markerData);
     return data;
