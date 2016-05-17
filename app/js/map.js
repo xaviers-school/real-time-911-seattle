@@ -18,15 +18,19 @@ function displayMarkers(markersData) {
 
   for (var i = 0; i < markersData.length; i++) {
     var latlng = new google.maps.LatLng(markersData[i].lat, markersData[i].lng);
-    var dateTime = markersData[i].dateTime;
-    var address = markersData[i].address;
+    var dateTime = markersData[i].datetime;
+    var incidentNum = markersData[i].incidentNumber;
+    var level = markersData[i].level;
+    var address = markersData[i].location;
+    var status = markersData[i].status;
     var type = markersData[i].type;
-    var incidentNum = markersData[i].incidentNum;
+    var units = markersData[i].units;
 
-    var markerColor = '../img/red-dot.png';
+    var markerColor;
     if (markersData[i].type.match(/Medic/gi)) markerColor = '../img/first-aid.png';
-    if (markersData[i].type.match(/MVI/gi)) markerColor = '../img/blue-dot.png';
-    if (markersData[i].type.match(/Fire/gi)) markerColor = '../img/first-aid.png';
+    else if (markersData[i].type.match(/MVI/gi)) markerColor = '../img/blue-dot.png';
+    else if (markersData[i].type.match(/Fire/gi)) markerColor = '../img/first-aid.png';
+    else markerColor = '../img/red-dot.png';
 
     createMarker(latlng, dateTime, address, type, incidentNum, markerColor);
     bounds.extend(latlng);

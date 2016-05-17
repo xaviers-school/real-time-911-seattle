@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/realtime911');
 
 const PORT = process.env.PORT || 3000;
 

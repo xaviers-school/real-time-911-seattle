@@ -1,6 +1,11 @@
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
+const Data = require(__dirname + '/../app/models/data');
+
+const convert = require(__dirname + '/../app/lib/convert_location');
+const handleDBError = require(__dirname + '/../app/lib/handle_db_error');
+const saveToDb = require(__dirname + '/../app/lib/save_to_db');
 
 var scraperRouter = module.exports = exports = express.Router();
 
@@ -10,7 +15,6 @@ const fields = ['datetime', 'incidentNumber', 'level', 'units', 'location', 'typ
 
 // here using request
 scraperRouter.get('/', function(req, res) {
-  var crimeData = [];  // reset it here to avoid duplicates - can work on updating later
   request(url, function(error, response, html) {
     if (error)
       return res.status(500).json({ msg: 'Error reaching Seattle Real Time 911' });
@@ -41,10 +45,24 @@ scraperRouter.get('/', function(req, res) {
       var rowStatus = $row.find('td:first-child').attr('class');
       incident.status = rowStatus;
 
-      crimeData.push(incident);
-    });
+      Data.findOne({ incidentNumber: incident.incidentNumber }, (err, data) => {
+        if (err) return handleDBError(err);
+        if (!data) {
+          console.log('New data found');
+          convert(incident.location)
+            .then(latlng => {
+              incident.latlng = latlng;
+              console.log('incident latlng ' + incident.latlng);
+              saveToDb(incident);
+            }, err => {
+              console.log(err);
+              res.status(500).json({ msg: 'Error in geocoding location' });
+            });
+        } else {
+          console.log('Data already saved');
+        }
+      });
 
-    console.log(crimeData.length);
-    res.send({ data: crimeData, length: crimeData.length });
+    });
   });
 });
