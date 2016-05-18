@@ -30,27 +30,27 @@ function getData(userOpt) {
       }
     }
   }
-  console.log('query: ', queryStr);
+  // console.log('query: ', queryStr);
 
-  var endpoint = 'https://data.seattle.gov/resource/grwu-wqtk.json';
-  if (queryStr.length) endpoint += queryStr;
+  var endpoint = 'http://localhost:3000/data/getData';
+  // if (queryStr.length) endpoint += queryStr;
+  var markerData;
 
-  return $.ajax(endpoint, {
-    headers: {
-      'X-App-Token': 'APIKEY'
-    }
-  }).then(function(data) {
+  return $.ajax(endpoint).then(function(data) {
     var markerData = data.map(function(el) {
       return {
-        lat: el['report_location']['coordinates'][1],
-        lng: el['report_location']['coordinates'][0],
+        lat: el['lat'],
+        lng: el['lng'],
         dateTime: el['datetime'],
-        address: el['address'],
+        address: el['location'],
         type: el['type'],
-        incidentNum: el['incident_number']
+        incidentNum: el['incidentNumber'],
+        status: el['status'],
+        units: el['units'],
+        level: el['level']
       };
     });
-    console.log(markerData);
+
     console.log(`Rendering ${markerData.length} items on map`);
     displayMarkers(markerData);
     return data;
