@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var dataSchema = new mongoose.Schema({
+var entrySchema = new mongoose.Schema({
   datetime: Date,
   incidentNumber: String,
   level: Number,
@@ -12,4 +12,4 @@ var dataSchema = new mongoose.Schema({
   lng: String
 });
 
-module.exports = exports = mongoose.model('Data', dataSchema);
+module.exports = exports = mongoose.model('Entry', entrySchema);

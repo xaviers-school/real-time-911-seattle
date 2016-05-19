@@ -34,8 +34,8 @@ function getData(userOpt) {
 
   var endpoint = 'http://localhost:3000/data/getData';
   // if (queryStr.length) endpoint += queryStr;
-  var markerData;
 
+  var markerData;
   return $.ajax(endpoint).then(function(data) {
     var markerData = data.map(function(el) {
       return {

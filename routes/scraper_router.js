@@ -1,11 +1,11 @@
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
-const Data = require(__dirname + '/../app/models/data');
+const Entry = require(__dirname + '/../models/entry');
 
-const convert = require(__dirname + '/../app/lib/convert_location');
-const handleDBError = require(__dirname + '/../app/lib/handle_db_error');
-const saveToDb = require(__dirname + '/../app/lib/save_to_db');
+const convert = require(__dirname + '/../lib/convert_location');
+const handleDBError = require(__dirname + '/../lib/handle_db_error');
+const saveToDb = require(__dirname + '/../lib/save_to_db');
 
 var scraperRouter = module.exports = exports = express.Router();
 
@@ -47,7 +47,7 @@ scraperRouter.get('/', function(req, res) {
       var temp = incident.datetime;
       incident.datetime = new Date(temp);
 
-      Data.findOne({ incidentNumber: incident.incidentNumber }, (err, data) => {
+      Entry.findOne({ incidentNumber: incident.incidentNumber }, (err, data) => {
         if (err) return handleDBError(err);
         if (!data) {
           console.log('New data found');
@@ -55,7 +55,6 @@ scraperRouter.get('/', function(req, res) {
             .then(data => {
               incident.lat = data.lat;
               incident.lng = data.lng;
-              console.log('incident latlng ' + incident.lat + ', ' + incident.lng);
               saveToDb(incident);
             }, err => {
               console.log(err);
@@ -65,7 +64,6 @@ scraperRouter.get('/', function(req, res) {
           console.log('Data already saved');
         }
       });
-
     });
   });
 });

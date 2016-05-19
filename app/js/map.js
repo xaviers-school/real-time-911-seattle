@@ -44,7 +44,6 @@ function createMarker(latlng, dateTime, address, type, incidentNum, markerColor,
   var marker = new google.maps.Marker({
     map: map,
     position: latlng,
-    // animation: google.maps.Animation.DROP,
     title: type,
     icon: markerColor
   });
