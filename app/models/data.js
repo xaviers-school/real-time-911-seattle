@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var dataSchema = new mongoose.Schema({
-  datetime: String,
+  datetime: Date,
   incidentNumber: String,
   level: Number,
   units: [String],

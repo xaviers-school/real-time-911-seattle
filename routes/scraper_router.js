@@ -44,6 +44,8 @@ scraperRouter.get('/', function(req, res) {
       // read incident status from class
       var rowStatus = $row.find('td:first-child').attr('class');
       incident.status = rowStatus;
+      var temp = incident.datetime;
+      incident.datetime = new Date(temp);
 
       Data.findOne({ incidentNumber: incident.incidentNumber }, (err, data) => {
         if (err) return handleDBError(err);
