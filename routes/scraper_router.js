@@ -2,8 +2,6 @@ const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
 
-const Entry = require(__dirname + '/../models/entry');
-
 const handleDBError = require(__dirname + '/../lib/handle_db_error');
 const combineDuplicates = require(__dirname + '/../lib/combine_duplicates');
 const updateDB = require(__dirname + '/../lib/update_db');
