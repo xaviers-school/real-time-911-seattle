@@ -5,10 +5,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/realtime911');
 
 const PORT = process.env.PORT || 3000;
 
-const dataRouter = require(__dirname + '/routes/data_router');
+const entryRouter = require(__dirname + '/routes/entry_router');
 const scraperRouter = require(__dirname + '/routes/scraper_router');
 app.use('/scrape', scraperRouter);
-app.use('/data', dataRouter);
+app.use('/api', entryRouter);
 
 app.use('/', express.static(__dirname + '/app'));
 
