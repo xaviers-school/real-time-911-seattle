@@ -12,4 +12,6 @@ var entrySchema = new mongoose.Schema({
   lng: String
 });
 
+entrySchema.index({datetime: 1}, {expireAfterSeconds: 86400});
+
 module.exports = exports = mongoose.model('Entry', entrySchema);
