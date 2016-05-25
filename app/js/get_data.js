@@ -1,7 +1,7 @@
 var endpoint = 'http://localhost:3000/api/entries';
 
 function getData() {
-  return $.ajax(endpoint)
+  return $.ajax(endpoint + '/today')
     .then(function(data) {
       var markerData = data.map(function(el) {
         return {
