@@ -46,7 +46,7 @@ function getData(userOpt) {
       return {
         lat: el['report_location']['coordinates'][1],
         lng: el['report_location']['coordinates'][0],
-        dateTime: el['datetime'],
+        datetime: el['datetime'],
         address: el['address'],
         type: el['type'],
         incidentNum: el['incident_number']

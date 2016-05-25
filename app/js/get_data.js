@@ -7,7 +7,8 @@ function getData() {
         return {
           lat: el['lat'],
           lng: el['lng'],
-          dateTime: el['datetime'],
+          datetime: el['datetime'],
+          displayDatetime: el['displayDatetime'],
           address: el['location'],
           type: el['type'],
           incidentNum: el['incidentNumber'],
@@ -18,7 +19,9 @@ function getData() {
       });
 
     console.log(`Rendering ${markerData.length} items on map`);
+
     displayMarkers(markerData);
+    displayList(markerData);
     return data;
   });
 }
