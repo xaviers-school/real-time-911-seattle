@@ -9,14 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sabbyt/real-time-911-seattle.git"
+    "url": "git+https://github.com/xaviers-school/real-time-911-seattle.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": [
+    { "name": "Natalie Chow", "email": "cychownat@gmail.com" },
+    { "name": "Sabrina Tee", "email": "sabrinatee@me.com" }
+  ],
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sabbyt/real-time-911-seattle/issues"
+    "url": "https://github.com/xaviers-school/real-time-911-seattle/issues"
   },
-  "homepage": "https://github.com/sabbyt/real-time-911-seattle#readme",
+  "homepage": "https://github.com/xaviers-school/real-time-911-seattle#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
     "cheerio": "^0.20.0",
