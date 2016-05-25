@@ -13,7 +13,7 @@ function displayList(markerData) {
   }).done(function(){
     content.entriesList = markerData.map(theTemplate);
     content.entriesList.forEach(function(el) {
-      $('#sidebar').append(el);
+      $('#sidebarList').append(el);
     });
   });
 }
