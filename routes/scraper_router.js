@@ -12,7 +12,7 @@ var scraperRouter = module.exports = exports = express.Router();
 const url = 'http://www2.seattle.gov/fire/realtime911/getRecsForDatePub.asp?action=Today&incDate=&rad1=des';
 // url for special date:
 // const url = 'http://www2.seattle.gov/fire/realtime911/getRecsForDatePub.asp?incDate=5-20-2016&rad1=des'
-const fields = ['datetime', 'incidentNumber', 'level', 'units', 'location', 'type'];
+const fields = ['displayDatetime', 'incidentNumber', 'level', 'units', 'location', 'type'];
 
 // here using request
 scraperRouter.get('/', function(req, res) {
@@ -48,10 +48,10 @@ scraperRouter.get('/', function(req, res) {
       var rowStatus = $row.find('td:first-child').attr('class');
       incident.status = rowStatus;
 
-      // convert datetime to Date object
-      incident.datetime = new Date(incident.datetime);
+      // add datetime to ISO Date object
+      incident.datetime = new Date(incident.displayDatetime);
 
-      // add index for filtering (combine=ing duplicates)
+      // add index for filtering (combining duplicates)
       incident.index = index;
 
       allData.push(incident);

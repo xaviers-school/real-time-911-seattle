@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 var entrySchema = new mongoose.Schema({
   datetime: Date,
+  displayDatetime: String,
   incidentNumber: String,
   level: Number,
   units: [String],
