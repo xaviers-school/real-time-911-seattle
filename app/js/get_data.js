@@ -1,7 +1,8 @@
-var endpoint = 'http://localhost:3000/api/entries';
+var url = 'http://localhost:3000/api/entries';
 
-function getData() {
-  return $.ajax(endpoint + '/today')
+function getData(query) {
+  query = query || '/today';
+  return $.ajax(url + query)
     .then(function(data) {
       var markerData = data.map(function(el) {
         return {
@@ -9,7 +10,7 @@ function getData() {
           lng: el['lng'],
           datetime: el['datetime'],
           displayDatetime: el['displayDatetime'],
-          address: el['location'],
+          address: el['address'],
           type: el['type'],
           incidentNum: el['incidentNumber'],
           status: el['status'],
