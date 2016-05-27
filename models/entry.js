@@ -6,13 +6,18 @@ var entrySchema = new mongoose.Schema({
   incidentNumber: String,
   level: Number,
   units: [String],
-  location: String,
+  address: String,
   type: String,
   status: String,
+  location: {
+    type: {type: String, default: 'Point'},
+    coordinates: []
+  },
   lat: String,
   lng: String
 });
 
-entrySchema.index({datetime: 1}, {expireAfterSeconds: 86400});
+// entrySchema.index({geo: '2dsphere', datetime: 1}, {expireAfterSeconds: 86400});
+entrySchema.index({ location: '2dsphere' });
 
 module.exports = exports = mongoose.model('Entry', entrySchema);
